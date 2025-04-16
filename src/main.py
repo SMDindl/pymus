@@ -1,8 +1,6 @@
 # Focus: User choice of API (Last.fm or Spotify)
 import os
 
-
-
 # Prompt the user to choose between Last.fm and Spotify.
 def get_api_choice():
     

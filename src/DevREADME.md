@@ -26,7 +26,7 @@ pymys\Scripts\activate
 
 # Install dependencies
 ```bash
-pip install -r req.txt
+pip install -r src/req.txt
 ```
 Note: Only need to install initally and when new dependencies are added
 
