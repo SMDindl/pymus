@@ -1,5 +1,6 @@
 venv/
 .env/   
+.env
 .myenv/
 pm/
-pymus/
+# Local env files
