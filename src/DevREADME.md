@@ -42,10 +42,11 @@ Note: After deactivating you can reaccess your env at a later time
 ```bash
 pymus/
 ├── pm/                # Virtual environment folder
-├── src/               # Your project source code
-│   ├── main.py        # Your Python files
+├── src/               # Project source code
+│   ├── DevREADME.md   # Documentation for development direction
+│   ├── main.py        # Python files
 │   └── other_files.py 
-├── requirements.txt   # Dependency list
+├── req.txt            # Dependency list
 └── README.md          # Documentation
 ```
 
@@ -73,3 +74,6 @@ There is a `.gitignore` file that stops your local envs from being pushed.
 If you want to create a virtual env with different name add the env name `[env-name]/` to `.gitignore` file.
 
 ---
+
+# Last.fm pylast reference
+[Source Code Test for pylast](https://github.com/pylast/pylast/tree/main/tests)
