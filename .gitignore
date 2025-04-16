@@ -3,4 +3,6 @@ venv/
 .env
 .myenv/
 pm/
+__pycache__/
+*.pyc
 # Local env files
