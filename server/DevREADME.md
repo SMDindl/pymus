@@ -6,15 +6,16 @@ VS Code extention to make .md files more readable
 ---
 
 # Create env
+###### Recommended to be created within `server/` or dragged into folder
 ```bash
-python3 -m venv pm
+python3 -m venv venv
 ```
 
 # Run env
 
 #### Mac/Linux
 ```bash
-source pm/bin/activate
+source venv/bin/activate
 ```
 
 #### Windows CMD
@@ -26,7 +27,7 @@ pymys\Scripts\activate
 
 # Install dependencies
 ```bash
-pip install -r src/req.txt
+pip install -r server/req.txt
 ```
 Note: Only need to install initally and when new dependencies are added
 
@@ -39,35 +40,45 @@ Note: After deactivating you can reaccess your env at a later time
 ---
 
 # File Struc
+## Current Structure
+```bash
+pymus/
+├── client/            # Frontend side
+│   ├── public/        # React.js public assets (e.g., static files)
+│   └── src/           # React.js source code (e.g., components, hooks)
+├── server/            # Backend side
+│   ├── app/           # Python files
+|   │   ├── server.py  # Entry point for backend logic
+|   │   └── otherfiles.py  
+│   ├── venv/          # Python Virtual environment folder
+|   ├── req.txt        # Dependency list for backend
+│   └── DevREADME.md   # Documentation for development direction
+├── .env               # For sensitive data (e.g., API keys, database credentials)
+├── .gitignore         # Specifies files to ignore (e.g., vir environments, .env)
+└── README.md          # General project documentation
+```
+
+## Old Structure (before react frontend)
 ```bash
 pymus/
 ├── pm/                # Virtual environment folder
 ├── src/               # Project source code
 │   ├── DevREADME.md   # Documentation for development direction
 │   ├── main.py        # Python files
-│   └── other_files.py 
+│   └── otherfiles.py 
 ├── req.txt            # Dependency list
 └── README.md          # Documentation
 ```
 
-## Activate & Run 
-###### Previous file strucure:
-```bash
-source pm/bin/activate  # Activate the virtual environment
-```
-```bash
-python src/main.py      # Run your Python file
-```
-Note: If you created the virtual environment while your current directory was set to `src` (through cd), the `pm` folder will be located inside `src`.
-###### In this case:
 
+## Activate & Run 
 ```bash
-source pm/bin/activate  # Activate the virtual environment
+source server/venv/bin/activate  # Activate the virtual environment
 ```
 ```bash
-python main.py      # Run your Python file
+python server/app/main.py      # Run your Python file
 ```
----
+
 
 # Git 
 There is a `.gitignore` file that stops your local envs from being pushed.

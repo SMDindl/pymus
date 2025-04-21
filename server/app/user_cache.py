@@ -1,5 +1,5 @@
-# User object for memoization
-# Focus: User cache for Last.fm data
+# Classes for caching lastfm user data
+# Focus: User cache to handle and limit api calls
 
 # Create a list of each month and year since the user registered
 from datetime import datetime, timedelta
@@ -19,7 +19,7 @@ class UserCache:
         self.unixtime_registered = self.user.get_unixtime_registered()
         self.months_since_registered_dict = self.create_months_since_registered_dict();
         # Cached data
-        self.monthly_data_cache= {}  # key = time, item = data object
+        self.monthly_data_cache= {}  # key = time, item = data (or None if data has not yet been cached)
         self.yearly_data_cache = {}
         self.alltime_data_cache = None
         
@@ -59,6 +59,35 @@ class UserCache:
         # Return the dictionary of months and years since the user registered
         return self.months_since_registered_dict
     
+    def get_monthly_data(self, year, month):
+        # Get the monthly data for the given year and month
+        date = f"{year}-{month}"
+        if date in self.monthly_data_cache:
+            print("Data already cached")
+            return self.monthly_data_cache[f"{year}-{month}"]
+        else:
+            data = MonthlyData(year, month, self.network)
+            data.cache_data
+            self.monthly_data_cache.update({date : data})
+            print("Data newly cached")
+            return data
+        
+    def get_yearly_data(self, year):
+        # Get the yearly data for the given year
+        if year in self.yearly_data_cache:
+            return self.yearly_data_cache[year]
+        else:
+            print(f"Yearly data for {year} not found.")
+            return None
+        
+    def get_alltime_data(self):
+        # Get the alltime data
+        if self.alltime_data_cache:
+            return self.alltime_data_cache
+        else:
+            print("Alltime data not found.")
+            return None
+    
     def print_data(self):
         # Print out the username and the number of months and years since the user registered
         print(f"Username: {self.username} \n")
@@ -73,7 +102,7 @@ class Data:
         pass
 
 
-    
+# Montly Data Object
 class MonthlyData:
     def __init__(self, year, month, network):
         self.network = network
@@ -95,7 +124,7 @@ class MonthlyData:
 
     def cache_data(self):
         # Cache all data for the month
-        # print(f"Month {self.year}-{self.month} data caching......")
+        print(f"Month {self.year}-{self.month} data caching......")
         self.cache_total_scrobbles()
         # print(f"Total scrobbles for {self.year}-{self.month}: {self.total_scrobbles}")
         time.sleep(0.1)  # buffer
@@ -191,7 +220,7 @@ class MonthlyData:
         return self.year
     
 
-
+# Yearly data object
 class YearlyData:
     def __init__(self, year):
         self.year = year
@@ -215,6 +244,11 @@ class AllTimeData:
     
     def get_months(self):
         return self.months
+    
+class TimeData:
+    def __init__(self):
+        pass
+        
     
 class Metadata:
     def __init__(self, network):

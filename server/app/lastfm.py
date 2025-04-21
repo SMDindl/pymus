@@ -89,11 +89,25 @@ def main():
     # Print out the username and the number of months and years since the user registered
     cache.print_data()
 
-    jan_2022_data = user_cache.MonthlyData(year=2022, month=1, network=network)
+    # Three ways to get data from the cache
+    # 1. Monthly data
+    # 2. Yearly data
+    # 3. Alltime data
+    cache.get_monthly_data(year=2022, month=1) # Not caching 
+    jan_data = cache.get_monthly_data(year=2022, month=1) # Not caching 
 
-    jan_2022_data.cache_data()
+    jan_data.print_cached_data()
 
-    jan_2022_data.print_cached_data()
+    cache.get_yearly_data(year=2023)
+
+    cache.get_alltime_data()
+
+    # jan_2022_data = user_cache.MonthlyData(year=2022, month=1, network=network)
+
+    # jan_2022_data.cache_data()
+
+    # jan_2022_data.print_cached_data()
+
 
 
 

@@ -325,7 +325,7 @@ class _Network:
         # so we need to get all (250) and then limit locally
         doc = _Request(self, "tag.getTopTags").execute(cacheable)
 
-        seq = []
+        seq = []  
         for node in doc.getElementsByTagName("tag"):
             if limit and len(seq) >= limit:
                 break
